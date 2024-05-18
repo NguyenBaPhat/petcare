@@ -1,0 +1,124 @@
+@import url("https://fonts.googleapis.com/css?family=Nunito");
+
+:root {
+  --background-color: rgb(6, 250, 107);
+  --acid-height: 0;
+  --display-charging: "none";
+}
+
+.battery {
+  position: relative;
+  margin-left: 5.5rem;
+  margin-top: -0.8rem;
+  width: 10vw; /* Chiều rộng bằng 15% của viewport width */
+  height: 33vh; 
+  border: 4px solid #07ec29;
+  border-radius: 25px;
+}
+
+.battery:after {
+  position: absolute;
+  top: -1.125rem;
+  left: 2.815rem;
+  width: 2.6vw;
+  height: 1.32vh;
+  background-color: #10f062;
+  border-radius: 5px 5px 0px 0px;
+  content: "";
+}
+
+.acid-container {
+  overflow: hidden;
+  height: calc(100% - 8px);
+  border-radius: 18px;
+  margin: 4px;
+  position: relative;
+}
+
+.acid-container .acid {
+  height: 250px;
+  display: flex;
+  flex-direction: column;
+  flex-flow: column-reverse;
+}
+
+.acid-container .acid .fill {
+  background: rgb(3, 245, 51);
+  height: var(--acid-height);
+  width: 100%;
+  flex-shrink: 0;
+  transition: height 2s ease-in-out;
+}
+
+.acid-container .acid .waves {
+  display: block;
+  width: 100%;
+  height: 28px;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  transform: translateY(calc(100% - var(--acid-height)));
+  transition: transform 0.3s ease-in-out;
+}
+
+.acid-container .acid .waves .parallax > use {
+  animation: move-forever 12s linear infinite;
+}
+
+.acid-container .acid .waves .parallax > use:nth-child(1) {
+  animation-delay: -2s;
+  fill: rgba(255, 255, 255, 0.6);
+}
+
+.acid-container .acid .waves .parallax > use:nth-child(2) {
+  animation-delay: -2s;
+  animation-duration: 5s;
+  fill: rgba(255, 255, 255, 0.8);
+}
+
+.acid-container .acid .waves .parallax > use:nth-child(3) {
+  animation-delay: -4s;
+  animation-duration: 3s;
+  fill: white;
+}
+
+@keyframes move-forever {
+  0% {
+    transform: translate(-90px, 0%) translateY(-10%);
+  }
+  100% {
+    transform: translate(85px, 0%) translateY(10%);
+  }
+}
+
+.percentage {
+  font-size: 1.4vw;
+  font-weight: bold;
+  color: rgb(11, 252, 155);
+  margin-left: 3vw;
+  margin-top: 2vh;
+}
+
+.percentage i {
+  margin-right: 6px;
+  display: var(--display-charging);
+}
+.acid-container .acid .fill.full-low-battery {
+  background: red; /* Đổi màu thành đỏ khi pin dưới 20% */
+}
+.battery.low-battery {
+  border-color: red; /* Đổi màu viền sang đỏ khi pin dưới 20% */
+  background-color: #ffcdd2; /* Đổi màu nền cục pin sang hồng nhạt */
+}
+
+.battery.low-battery:after {
+  background-color: red; /* Đổi màu phần viền trên cùng sang đỏ */
+}
+
+.battery.low-battery .percentage {
+  color: red; /* Đổi màu chữ hiển thị giá trị pin sang đỏ */
+}
+
+.battery.low-battery .percentage i {
+  color: red; /* Đổi màu icon sang đỏ */
+}
