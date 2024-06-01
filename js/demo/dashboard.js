@@ -49,15 +49,15 @@ function temperature(data) {
     TemperatureContentElement.textContent = latestTemperature;
   }
 
-  const sortedData = data.sort((a, b) => new Date(b.timestamp) - new Date(a.timestamp));
-  const latestData = sortedData.slice(0, MAX_DATA_POINTS).map(item => item.temp);
+  // const sortedData = data.sort((a, b) => new Date(b.timestamp) - new Date(a.timestamp));
+  // const latestData = sortedData.slice(0, MAX_DATA_POINTS).map(item => item.temp);
 
-  if (temperatureChart) {
-    temperatureChart.data.datasets[0].data.push(latestData[0]); // Thêm giá trị mới vào cuối mảng dữ liệu
-    temperatureChart.data.datasets[0].data.shift(); // Loại bỏ giá trị cũ nhất khỏi đầu mảng dữ liệu
-    temperatureChart.data.labels = temperatureChart.data.labels.map((_, i) => i); // Cập nhật nhãn trục x
-    temperatureChart.update();
-  }
+  // if (temperatureChart) {
+  //   temperatureChart.data.datasets[0].data.push(latestData[0]); // Thêm giá trị mới vào cuối mảng dữ liệu
+  //   temperatureChart.data.datasets[0].data.shift(); // Loại bỏ giá trị cũ nhất khỏi đầu mảng dữ liệu
+  //   temperatureChart.data.labels = temperatureChart.data.labels.map((_, i) => i); // Cập nhật nhãn trục x
+  //   temperatureChart.update();
+  // }
 }
 
 function updateBehavior(data) {
@@ -102,52 +102,111 @@ function Batterry(data) {
     batteryElement.classList.remove('low-battery');
   }
 }
-const MAX_DATA_POINTS = 20;
-let temperatureChart; // Khai báo biến toàn cục để lưu trữ biểu đồ
 
-document.addEventListener('DOMContentLoaded', () => {
-  const temperatureChartElement = document.getElementById('temperatureChart');
-  if (temperatureChartElement) {
-    const ctx = temperatureChartElement.getContext('2d');
-    initChart(ctx);
-  } else {
-    console.error("Phần tử HTML với id 'temperatureChart' không tồn tại");
-  }
-});
 
-function initChart(ctx) {
-  temperatureChart = new Chart(ctx, {
-    type: 'line',
-    data: {
-      labels: Array.from({ length: MAX_DATA_POINTS }, (_, i) => i),
-      datasets: [{
-        label: 'Temperature',
-        data: new Array(MAX_DATA_POINTS).fill(null),
-        borderColor: 'rgba(0, 92, 185, 1)',
-        backgroundColor: 'rgba(0, 0, 0, 0)', // Không có màu nền
-        borderWidth: 2.5
-      }]
-    },
-    options: {
-      maintainAspectRatio: false, // Cho phép biểu đồ thay đổi kích thước
-      height: 300, // Chiều cao của biểu đồ
-      legend: {
-        display: false // Ẩn chú thích đồ thị
-      },
-      scales: {
-        xAxes: [{
-          ticks: {
-            display: false
-          }
-        }]
-      },
-      animation: {
-        duration: 0 // Tắt hiệu ứng hoạt hình để cập nhật dữ liệu nhanh hơn
-      }
-    }
-  });
-}
 
+// var ctx = document.getElementById("myPieChart");
+// var myPieChart = new Chart(ctx, {
+//   type: 'doughnut',
+//   data: {
+//     labels: ["Direct", "Referral", "Social"],
+//     datasets: [{
+//       data: [55, 30, 15],
+//       backgroundColor: ['#4e73df', '#1cc88a', '#36b9cc'],
+//       hoverBackgroundColor: ['#2e59d9', '#17a673', '#2c9faf'],
+//       hoverBorderColor: "rgba(234, 236, 244, 1)",
+//     }],
+//   },
+//   options: {
+//     maintainAspectRatio: false,
+//     tooltips: {
+//       backgroundColor: "rgb(255,255,255)",
+//       bodyFontColor: "#858796",
+//       borderColor: '#dddfeb',
+//       borderWidth: 1,
+//       xPadding: 15,
+//       yPadding: 15,
+//       displayColors: false,
+//       caretPadding: 10,
+//     },
+//     legend: {
+//       display: false
+//     },
+//     cutoutPercentage: 80,
+//   },
+// });
+
+
+// function renderBehaviorChart(data) {
+//   const behaviorCounts = {
+//     'sitting': 0,
+//     'standing': 0,
+//     'lying down': 0,
+//     'trotting': 0,
+//     'walking': 0,
+//     'playing': 0,
+//     'treat-searching': 0
+//   };
+
+//   // Đếm số lần xuất hiện của mỗi hành vi
+//   data.forEach(item => {
+//     const behavior = item.behavior.toLowerCase();
+//     if (behaviorCounts.hasOwnProperty(behavior)) {
+//       behaviorCounts[behavior]++;
+//     }
+//   });
+
+//   const behaviorLabels = Object.keys(behaviorCounts);
+//   const behaviorData = Object.values(behaviorCounts);
+
+//   const ctx = document.getElementById('behaviorChart').getContext('2d');
+//   const behaviorChart = new Chart(ctx, {
+//     type: 'doughnut',
+//     data: {
+//       labels: behaviorLabels,
+//       datasets: [{
+//         data: behaviorData,
+//         backgroundColor: [
+//           '#4e73df',
+//           '#1cc88a',
+//           '#36b9cc',
+//           '#f6c23e',
+//           '#e74a3b',
+//           '#858796',
+//           '#6610f2'
+//         ],
+//         hoverBackgroundColor: [
+//           '#2e59d9',
+//           '#17a673',
+//           '#2c9faf',
+//           '#f6b820',
+//           '#e02d1b',
+//           '#6c757d',
+//           '#4e08b6'
+//         ],
+//         hoverBorderColor: 'rgba(234, 236, 244, 1)'
+//       }]
+//     },
+//     options: {
+//       maintainAspectRatio: false,
+//       tooltips: {
+//         backgroundColor: 'rgb(255,255,255)',
+//         bodyFontColor: '#858796',
+//         borderColor: '#dddfeb',
+//         borderWidth: 1,
+//         xPadding: 15,
+//         yPadding: 15,
+//         displayColors: false,
+//         caretPadding: 10
+//       },
+//       legend: {
+//         display: true,
+//         position: 'bottom'
+//       },
+//       cutoutPercentage: 80
+//     }
+//   });
+// }
 
 async function updateData() {
   const data = await fetchData();
@@ -156,6 +215,7 @@ async function updateData() {
   updateBehavior(data);
   updateHealthStatus(data);
   initMap(data);
+  // renderBehaviorChart(data);
 }
 
 setInterval(updateData, 1000);

@@ -10856,7 +10856,19 @@ a:focus {
 
 @media (min-width: 768px) {
   .chart-pie {
-    height: calc(20rem - 43px) !important;
+    height: calc(23rem - 45px) !important;
+  }
+}
+
+.chart-cal {
+  position: relative;
+  height: 15rem;
+  width: 100%;
+}
+
+@media (min-width: 768px) {
+  .chart-cal {
+    height: 35rem;
   }
 }
 

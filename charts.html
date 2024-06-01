@@ -19,6 +19,8 @@
 
     <!-- Custom styles for this template-->
     <link href="css/sb-admin-2.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/fullcalendar@5.11.3/main.min.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/fullcalendar@5.11.3/main.min.css">
 
 </head>
 
@@ -82,7 +84,7 @@
             <li class="nav-item active">
                 <a class="nav-link" href="charts.html">
                     <i class="fas fa-fw fa-chart-area"></i>
-                    <span>Charts</span></a>
+                    <span>Charts Analysis</span></a>
             </li>
 
             <!-- Nav Item - Tables -->
@@ -339,28 +341,28 @@
                             <!-- Bar Chart -->
                             <div class="card shadow mb-4">
                                 <div class="card-header py-3">
-                                    <h6 class="m-0 font-weight-bold text-primary">Bar Chart</h6>
+                                    <h6 class="m-0 font-weight-bold text-primary">Behavior Analysis</h6>
                                 </div>
                                 <div class="card-body">
                                     <div class="chart-bar">
-                                        <!-- <canvas id="myBarChart"></canvas> -->
+                                        <canvas id="behaviorChart"></canvas>
                                     </div>
                                 </div>
                             </div>
 
                         </div>
 
-                        <!-- Donut Chart -->
+                        <!-- Health Analysis -->
                         <div class="col-xl-4 col-lg-5">
                             <div class="card shadow mb-4">
                                 <!-- Card Header - Dropdown -->
                                 <div class="card-header py-3">
-                                    <h6 class="m-0 font-weight-bold text-primary">Donut Chart</h6>
+                                    <h6 class="m-0 font-weight-bold text-primary">Health Analysis</h6>
                                 </div>
                                 <!-- Card Body -->
                                 <div class="card-body">
-                                    <div class="chart-pie pt-4">
-                                        <!-- <canvas id="myPieChart"></canvas> -->
+                                    <div class="chart-cal pt-4">
+                                        <div id="calendar"></div>
                                     </div>
                                 </div>
                             </div>
@@ -429,7 +431,7 @@
 
     <!-- Page level custom scripts -->
     <!-- <script src="js/demo/chart-area-demo.js"></script> -->
-    <script src="js/demo/dashboard.js"></script>
+    <script src="js/demo/chart.js"></script>
 
 </body>
 

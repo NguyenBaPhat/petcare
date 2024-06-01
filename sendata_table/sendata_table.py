@@ -36,8 +36,8 @@ def publishData(txt):
         batterry = random.randint(0, 100)
         lat= 10
         long= 106
-        health = "Normal"
-        behavior = "Good"
+        health = "Good"
+        behavior = "playing"
 
         now = datetime.datetime.utcnow() + datetime.timedelta(hours=7)
         timestamp = now.strftime("%Y-%m-%d %H:%M:%S") 
